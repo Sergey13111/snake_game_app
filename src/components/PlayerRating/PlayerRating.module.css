@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
+	padding-left: 70px;
 	min-width: 200px;
 	min-height: 400px;
 	background-color: rgb(125 126 127 / 64%);
@@ -9,4 +10,9 @@
 
 .title {
 	color: #575757;
+}
+
+.level {
+	color: #575757;
+	font-size: 24px;
 }

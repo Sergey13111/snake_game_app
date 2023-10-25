@@ -31,8 +31,8 @@ const checkBorders = (position: number) => {
 };
 
 const GameBoard: React.FC = () => {
-	const [players] = useContext(PlayersContext);
-	const [, setScore] = useContext(ScoreContext);
+	const [players, setPlayers] = useContext(PlayersContext);
+	const [score, setScore] = useContext(ScoreContext);
 	const [speed, setSpeed] = useState(0);
 	const lastPlayer = players[players.length - 1]; // последний добавленый игрок
 	let level = lastPlayer ? lastPlayer.level : 'medium';
@@ -113,6 +113,26 @@ const GameBoard: React.FC = () => {
 			.some((item) => item[0] === headSnake[0] && item[1] === headSnake[1]);
 
 		if (isCollision) {
+			// Обновление состояния игроков с обновленным счетом
+			// создает новый массив updatedPlayers, в котором только текущий игрок обновляется с новым счетом, а остальные игроки остаются без изменений.
+			setPlayers((players) => {
+				const updatedPlayers = players.map((player, index) => {
+					if (index === players.length - 1) {
+						// Это текущий игрок
+						return {
+							...player,
+							levels: {
+								...player.levels,
+								[level]: { score: score },
+							},
+						};
+					} else {
+						return player;
+					}
+				});
+				return updatedPlayers;
+			});
+
 			setIsGameStart(false);
 			setSnake([
 				[0, 0],
@@ -133,7 +153,7 @@ const GameBoard: React.FC = () => {
 			}
 		}
 		setSnake(newSnake.slice(sliceIndex)); // обрезание хвоста
-	}, [direction, food, generatedFood, setIsGameStart, setScore, snake]);
+	}, [direction, food, generatedFood, level, score, setIsGameStart, setPlayers, setScore, snake]);
 
 	useEffect(() => {
 		if (isGameStart) {

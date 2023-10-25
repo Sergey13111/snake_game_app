@@ -3,7 +3,7 @@ import styles from './ModalForm.module.css';
 import PlayersContext from '../../context/PlayersContext/PlayersContext';
 import GameStartContext from '../../context/GameStartContext/GameStartContext';
 import { ModalFormType } from '../../models/ModalFormType';
-import ScoreContext from '../../context/ScoreContext/ScoreContext';
+
 const ModalForm: React.FC<ModalFormType> = ({ closeModal }) => {
 	const [, setIsGameStart] = useContext(GameStartContext);
 	const [players, setPlayers] = useContext(PlayersContext);
@@ -12,19 +12,37 @@ const ModalForm: React.FC<ModalFormType> = ({ closeModal }) => {
 	const defaultName = lastPlayer ? lastPlayer.name : '';
 	const [textInput, setTextInput] = useState<string>(defaultName);
 	const [level, setLevel] = useState<string>(defaultLevel);
-	const [score] = useContext(ScoreContext);
 
 	const addPlayer = (textInput: string) => {
 		if (textInput.trim() !== '') {
-			const newPlayer = {
-				id: Math.random().toString().substring(2, 10),
-				name: textInput,
-				level: level,
-				levels: {
-					[level]: { score: score },
-				},
+			// Проверяем, есть ли игрок с таким именем
+			const existingPlayer = players.find((player) => player.name === textInput);
+			const updatePlayer = async () => {
+				if (existingPlayer) {
+					// Если игрок с таким именем уже существует, устанавливаем его как активного игрока
+					existingPlayer.level = level;
+					existingPlayer.levels[level] = { score: 0 };
+					setIsGameStart(true);
+					closeModal();
+				} else {
+					// Иначе, создаем нового игрока
+					const newPlayer = {
+						id: Math.random().toString().substring(2, 10),
+						name: textInput,
+						level: level,
+						levels: {
+							easy: { score: 0 },
+							medium: { score: 0 },
+							difficult: { score: 0 },
+						},
+					};
+
+					setPlayers([...players, newPlayer]);
+					setIsGameStart(true);
+					closeModal();
+				}
 			};
-			setPlayers([...players, newPlayer]);
+			updatePlayer();
 		} else {
 			alert('Enter your name...');
 		}
