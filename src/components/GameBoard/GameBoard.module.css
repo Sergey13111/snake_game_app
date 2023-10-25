@@ -1,0 +1,23 @@
+.sectionGameBoard {
+	width: fit-content;
+	height: fit-content;
+	padding: 20px;
+	background-color: rgba(140, 125, 116, 0.645);
+}
+
+.infoWrapper {
+	display: flex;
+	flex-direction: column;
+
+	padding: 0 50px;
+}
+
+.boardWrapper {
+	margin: 20px 50px;
+	border: 1px solid rgba(76, 70, 70, 0.297);
+	background-color: rgba(68, 52, 52, 0.297);
+}
+
+.rowBoard {
+	display: flex;
+}

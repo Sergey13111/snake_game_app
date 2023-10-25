@@ -1,0 +1,19 @@
+.container {
+	margin: 0 auto;
+}
+
+.main {
+	background-color: rgba(240, 248, 255, 0.369);
+	min-height: 100vh;
+}
+
+.main h1 {
+	color: #ae8989;
+	padding: 20px;
+	text-align: center;
+}
+
+.game {
+	display: grid;
+	grid-template-columns: auto 1fr;
+}

@@ -1,0 +1,12 @@
+.sectionPlayerRating {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	min-width: 200px;
+	min-height: 400px;
+	background-color: rgb(125 126 127 / 64%);
+}
+
+.title {
+	color: #575757;
+}
