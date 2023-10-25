@@ -3,10 +3,12 @@ import styles from './ModalForm.module.css';
 import PlayersContext from '../../context/PlayersContext/PlayersContext';
 import GameStartContext from '../../context/GameStartContext/GameStartContext';
 import { ModalFormType } from '../../models/ModalFormType';
+import ScoreContext from '../../context/ScoreContext/ScoreContext';
 
 const ModalForm: React.FC<ModalFormType> = ({ closeModal }) => {
 	const [, setIsGameStart] = useContext(GameStartContext);
 	const [players, setPlayers] = useContext(PlayersContext);
+	const [score] = useContext(ScoreContext);
 	const lastPlayer = players[players.length - 1]; // последний добавленый игрок
 	const defaultLevel = lastPlayer ? lastPlayer.level : 'medium';
 	const defaultName = lastPlayer ? lastPlayer.name : '';
@@ -17,11 +19,17 @@ const ModalForm: React.FC<ModalFormType> = ({ closeModal }) => {
 		if (textInput.trim() !== '') {
 			// Проверяем, есть ли игрок с таким именем
 			const existingPlayer = players.find((player) => player.name === textInput);
+
 			const updatePlayer = async () => {
+				console.log(existingPlayer?.levels[level].score);
 				if (existingPlayer) {
-					// Если игрок с таким именем уже существует, устанавливаем его как активного игрока
-					existingPlayer.level = level;
-					existingPlayer.levels[level] = { score: 0 };
+					// Сравните текущий счет с максимальным значением
+					if (score > existingPlayer.levels[level].score) {
+						existingPlayer.levels[level].score = score;
+					} else {
+						// Просто обновит текущий счет
+						existingPlayer.levels[level].score = score;
+					}
 					setIsGameStart(true);
 					closeModal();
 				} else {

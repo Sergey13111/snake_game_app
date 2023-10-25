@@ -144,7 +144,7 @@ const GameBoard: React.FC = () => {
 
 			return; // остановка игры в случае столкновения
 		} else {
-			setScore(snake.length - 5);
+			setScore((snake.length - 5) * 10);
 			// если голова совпадает с едой вернуть индекс 0,чтоб змейка не обрезалась
 			if (headSnake[0] === food[0] && headSnake[1] === food[1]) {
 				sliceIndex = 0;
@@ -189,7 +189,7 @@ const GameBoard: React.FC = () => {
 		<section className={styles.sectionGameBoard}>
 			<div className={styles.infoWrapper}>
 				<span>Name: {name}</span>
-				<span>Score: {snake.length - 5}</span>
+				<span>Score: {(snake.length - 5) * 10}</span>
 				<span>Level: {level}</span>
 			</div>
 
