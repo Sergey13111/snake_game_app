@@ -1,7 +1,6 @@
 .sectionGameBoard {
-	width: fit-content;
-	height: fit-content;
-	padding: 20px;
+	min-height: 100vh;
+	padding: 20px 20px 20px 100px;
 	background-color: rgba(140, 125, 116, 0.645);
 }
 
@@ -20,4 +19,28 @@
 
 .rowBoard {
 	display: flex;
+}
+
+@media screen and (max-width: 1200px) {
+	.sectionGameBoard {
+		padding-left: 20px;
+	}
+
+	.boardWrapper {
+		margin: 20px;
+	}
+
+	.infoWrapper {
+		padding: 0 20px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.sectionGameBoard {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		justify-content: center;
+		min-height: auto;
+	}
 }

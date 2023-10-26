@@ -1,3 +1,16 @@
+Demo version app (https://sergey13111.github.io/snake_game_app/)
+
+# Application Description SnakeGame
+
+1. Three game difficulty levels.
+2. Control the snake using w\a\s\d keys or keyboard arrows.
+3. The appearance of "Food" is always with random coordinates.
+4. The ability to pass through the boundaries of the playing field.
+5. When the snake collides with itself, it is the end of the game. Will bring up an initial modal with the name and difficulty already populated. The player can change the data (name and difficulty) or continue with the already filled.
+6. List all players who played on the same difficulty level in descending order of rating. That is, when we play on easy difficulty, only those who also played on easy difficulty will be in the rating.
+7. Saving the rating after reloading the page.
+8. If a player enters a name and the store already has that name, that player will continue to play under the existing entry.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.

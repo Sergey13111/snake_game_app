@@ -21,7 +21,6 @@ const ModalForm: React.FC<ModalFormType> = ({ closeModal }) => {
 			const existingPlayer = players.find((player) => player.name === textInput);
 
 			const updatePlayer = async () => {
-				console.log(existingPlayer?.levels[level].score);
 				if (existingPlayer) {
 					// Сравните текущий счет с максимальным значением
 					if (score > existingPlayer.levels[level].score) {

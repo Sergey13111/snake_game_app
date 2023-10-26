@@ -222,6 +222,7 @@ const GameBoard: React.FC = () => {
 								: '';
 
 							return (
+								
 								<Cell
 									key={indexCell}
 									classCell={classCell}

@@ -8,8 +8,6 @@ const App: React.FC = () => {
 	return (
 		<main className='main '>
 			<div className='container'>
-				<h1>Snake Game</h1>
-
 				<div className='game'>
 					<ModalGame />
 					<GameBoard />

@@ -24,11 +24,18 @@
 }
 
 .buttonAdd {
-	background: #5e5235;
+	background: #937d49;
 	color: #fff;
 	padding: 10px 20px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	margin-top: 10px;
+}
+
+.buttonAdd:hover {
+	color: #fff;
+	background-color: #5e5235;
+	border-color: #5e5235;
+	box-shadow: 0px 0px 3px black;
 }
